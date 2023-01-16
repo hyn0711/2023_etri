@@ -3,7 +3,7 @@
 import socket
 
 IP = '129.254.187.105'
-PORT = 22
+PORT = 5050
 SIZE = 1024
 ADDR = (IP, PORT)
 
