@@ -41,11 +41,11 @@ while True:
     stringData = recvall(conn, int(length))
     data = np.fromstring(stringData, dtype = 'uint8')
     
-    frame = cv2.imdecode(data, cv2.IMREAD_COLOR)
+    #frame = cv2.imdecode(data, cv2.IMREAD_COLOR)
 
-    ret, image = frame.numpy.array()
+   # ret, image = frame.numpy.array()
     start = time.time()
-    image = letterbox(image, 1280, stride=64, auto=True)[0]
+    image = letterbox(data, 1280, stride=64, auto=True)[0]
     with torch.no_grad():
         image = transforms.ToTensor()(image)
         image = torch.tensor(np.array([image.numpy()]))
