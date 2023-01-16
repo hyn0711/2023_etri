@@ -43,7 +43,7 @@ while True:
     
     frame = cv2.imdecode(data, cv2.IMREAD_COLOR)
 
-    ret, image = frame.np.array()
+    ret, image = frame.numpy.array()
     start = time.time()
     image = letterbox(image, 1280, stride=64, auto=True)[0]
     with torch.no_grad():
