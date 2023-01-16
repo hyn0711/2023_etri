@@ -4,11 +4,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import torch
 from torchvision import transforms
+import utils
 from utils.datasets import letterbox
 from utils.general import non_max_suppression_kpt
 from utils.plots import output_to_keypoint, plot_skeleton_kpts
 import time
-import utils
+
 
 def recvall(sock, count):
     
