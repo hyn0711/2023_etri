@@ -32,16 +32,16 @@ def recvall(sock, count):
 HOST='129.254.187.105'
 PORT=8485
  
-s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+server_socket=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 print('Socket created')
  
-s.bind((HOST,PORT))
+server_socket.bind((HOST,PORT))
 print('Socket bind complete')
 
-s.listen(10)
+server_socket.listen(10)
 print('Socket now listening')
  
-conn,addr=s.accept()
+conn,addr=server_socket.accept()
  
 while True:
 
@@ -67,5 +67,7 @@ while True:
     #cv2.imshow('ImageWindow',frame)
     pirnt(output)
     
-    s.sendall(output.encode())
+    client_socket.sendall(output)
+    server_socket.close()
+    client_socket.close()
     cv2.waitKey(1)
