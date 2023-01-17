@@ -67,5 +67,5 @@ while True:
     #cv2.imshow('ImageWindow',frame)
     pirnt(output)
     
-    s.sendall(output)
+    s.sendall(output.encode())
     cv2.waitKey(1)
