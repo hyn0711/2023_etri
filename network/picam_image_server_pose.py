@@ -65,5 +65,5 @@ while True:
         
         
     #cv2.imshow('ImageWindow',frame)
-    output.show()
+    pirnt(output)
     cv2.waitKey(1)
