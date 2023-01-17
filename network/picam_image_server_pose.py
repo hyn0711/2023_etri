@@ -66,4 +66,6 @@ while True:
         
     #cv2.imshow('ImageWindow',frame)
     pirnt(output)
+    
+    s.sendall(output)
     cv2.waitKey(1)
