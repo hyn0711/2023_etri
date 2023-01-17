@@ -10,10 +10,10 @@ from utils.general import non_max_suppression_kpt
 from utils.plots import output_to_keypoint, plot_skeleton_kpts
 import time
 
-#device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-#weigths = torch.load('yolov7-w6-pose.pt', map_location=device)
-#model = weigths['model']
-#_ = model.float().eval()
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+weigths = torch.load('yolov7-w6-pose.pt', map_location=device)
+model = weigths['model']
+_ = model.float().eval()
 
 if torch.cuda.is_available():
     print("cuda : available")
