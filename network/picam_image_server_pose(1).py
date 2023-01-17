@@ -19,14 +19,15 @@ if torch.cuda.is_available():
     print("cuda : available")
     model.half().to(device)
 
+# socket에서 수신한 버퍼를 반환하는 함수 #
 def recvall(sock, count):
-    
+# 바이트 문자
     buf = b''
     while count:
-        newbuf = sock.recv(count)
-        if not newbuf: return None
-        buf += newbuf
-        count -= len(newbuf)
+        newbuf = sock.recv(count)    #소켓으로부터 데이터를 읽음, 최대 count 바이트만큼의 데이터를 읽어옴, 읽어드릴 데이터가 없으면 상대방이 데이터를 보내줄 때 까지 대기
+        if not newbuf: return None  
+        buf += newbuf                # buf = buf + newbuf
+        count -= len(newbuf)         # count = count - len(newbuf) , len() : 문자열의 길이 반환
     return buf
  
 HOST='129.254.187.105'
@@ -45,13 +46,15 @@ client_socket,addr=server_socket.accept()
  
 while True:
 
-    length = recvall(client_socket, 16)
-    stringData = recvall(client_socket, int(length))
-    data = np.fromstring(stringData, dtype = 'uint8')
+    # client에서 받은 stringData의 크기 (==(str(len(stringData))).encode().ljust(16))
+    #ljust : 문자열을 왼쪽으로 16만큼 정렬
+    length = recvall(client_socket, 16)       #client_socket으로부터 수신한 버퍼를 최대 16바이트씩 반환
+    stringData = recvall(client_socket, int(length))   
+    data = np.fromstring(stringData, dtype = 'uint8')  
     
-    frame = cv2.imdecode(data, cv2.IMREAD_COLOR)
+    frame = cv2.imdecode(data, cv2.IMREAD_COLOR)  #data를 디코딩
 
-    image = np.array(frame)
+    image = np.array(frame)   #디코딩된 frame을 다시 numpy.array하여 행렬 형태로..?
     start = time.time()
     image = letterbox(image, 1280, stride=64, auto=True)[0]
     with torch.no_grad():
