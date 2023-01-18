@@ -41,12 +41,12 @@ print('Socket bind complete')
 server_socket.listen(10)
 print('Socket now listening')
  
-client_server,addr=server_socket.accept()
+conn,addr=server_socket.accept()
  
 while True:
 
-    length = recvall(client_server, 16)
-    stringData = recvall(client_server, int(length))
+    length = recvall(conn, 16)
+    stringData = recvall(conn, int(length))
     data = np.fromstring(stringData, dtype = 'uint8')
     
     frame = cv2.imdecode(data, cv2.IMREAD_COLOR)
