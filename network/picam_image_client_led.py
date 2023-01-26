@@ -86,8 +86,6 @@ while True:
     frame1 = picam2.capture_array()
     frame = frame1.copy()
     result, frame = cv2.imencode('.jpg', frame, encode_param)
-    
-    #print(type(frame1))
 
     data = np.array(frame)
     stringData = data.tostring()
