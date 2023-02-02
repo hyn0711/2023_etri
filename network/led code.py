@@ -1,3 +1,5 @@
+# 그냥 한번 짜봄
+
 def fps_change(device):
     '''when fps changed, animate it.'''
     tens_digit = "%d"%int(output.shape[0]//10)
