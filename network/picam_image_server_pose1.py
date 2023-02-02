@@ -73,8 +73,8 @@ while True:
                 output, _ = model(image)
                 output = non_max_suppression_kpt(output, 0.25, 0.65, nc=model.yaml['nc'], nkpt=model.yaml['nkpt'], kpt_label=True)
                 output = output_to_keypoint(output)
-            temp = output.tostring()
-            conn.sendall((str(len(temp))).encode().ljust(16)+temp)
+            output1 = output.tostring()
+            conn.sendall((str(len(output1))).encode().ljust(16)+output1)
         except:
             break
 
