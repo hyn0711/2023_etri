@@ -9,6 +9,7 @@ import pickle
 import re
 import argparse
 import sys
+import asyncio
 
 from luma.led_matrix.device import max7219
 from luma.core.interface.serial import spi, noop
@@ -47,9 +48,11 @@ picam2.configure(picam2.create_preview_configuration(main={"format": 'XRGB8888',
 picam2.start()
 
 # create LED matrix device
-serial = spi(port=0, device=0, gpio=noop())
-device = max7219(serial, cascaded=2, block_orientation=-90, blocks_arranged_in_reverse_order=True)
+serial = spi(port=1, device=0, gpio=noop())
+device = max7219(serial, cascaded=4, block_orientation=90, blocks_arranged_in_reverse_order=True)
 
+
+    
 def plot_skeleton_kpts(im, kpts, steps, orig_shape=None):
     #Plot the skeleton and keypointsfor coco datatset
     palette = np.array([[255, 128, 0], [255, 153, 51], [255, 178, 102],
@@ -127,9 +130,12 @@ while True:
     frame1 = cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB)
     
     # LED text code
+    '''
     with canvas(device) as draw:
         text(draw, (0, 1), "%d"%int(output.shape[0]//10), fill="white", font=proportional(CP437_FONT))
         text(draw, (9, 1), "%d"%int(output.shape[0]%10), fill="white", font=proportional(CP437_FONT))
+    '''
+    show_message(device, "%d detected"%output.shape[0], fill="white", font=proportional(LCD_FONT), scroll_delay=0.1)
     
     end = time.time()
     fps = 1 /(end-start)
@@ -141,3 +147,4 @@ while True:
     cv2.imshow('pose', frame1)
     cv2.waitKey(1)
 client_socket.close()
+
