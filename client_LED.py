@@ -130,12 +130,12 @@ while True:
     frame1 = cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB)
     
     # LED text code
-    '''
+    
     with canvas(device) as draw:
-        text(draw, (0, 1), "%d"%int(output.shape[0]//10), fill="white", font=proportional(CP437_FONT))
-        text(draw, (9, 1), "%d"%int(output.shape[0]%10), fill="white", font=proportional(CP437_FONT))
-    '''
-    show_message(device, "%d detected"%output.shape[0], fill="white", font=proportional(LCD_FONT), scroll_delay=0.1)
+        text(draw, (16, 1), "%d"%int(output.shape[0]//10), fill="white", font=proportional(CP437_FONT))
+        text(draw, (24, 1), "%d"%int(output.shape[0]%10), fill="white", font=proportional(CP437_FONT))
+    
+    #show_message(device, "%d detected"%output.shape[0], fill="white", font=proportional(LCD_FONT), scroll_delay=0.1)
     
     end = time.time()
     fps = 1 /(end-start)
