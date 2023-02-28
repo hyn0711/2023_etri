@@ -43,7 +43,9 @@ while True:
                 print(rec.Result())
             else:
                 print(rec.PartialResult())
-        Final_Result = rec.FinalResult()
+        FinalResult = rec.FinalResult()
+        FinalResult = FinalResult.replace("{","")
+        Final_Result = FinalResult.replace("}","")
         print(Final_Result)
 
     show_message(device, Final_Result, fill="white", font=proportional(LCD_FONT), scroll_delay=0.1)
